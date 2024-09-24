@@ -17,7 +17,7 @@ class ArticleType(DjangoObjectType):
 
 
 class ArticleConnection(graphene.ObjectType):
-    data = graphene.Field(ArticleType)
+    data = graphene.List(ArticleType)
     page = graphene.Field(PaginatedType)
 
 
@@ -29,12 +29,3 @@ class ArticleStatusType(DjangoObjectType):
 class ArticleStatusConnection(graphene.ObjectType):
     data = graphene.Field(ArticleStatusType)
 
-
-class UserType(DjangoObjectType):
-    class Meta:
-        model = CustomUser
-
-
-class UserConnection(graphene.ObjectType):
-    data = graphene.Field(UserType)
-    page = graphene.Field(PaginatedType)

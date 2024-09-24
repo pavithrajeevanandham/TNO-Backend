@@ -16,5 +16,5 @@ class UserType(DjangoObjectType):
 
 
 class UserConnection(graphene.ObjectType):
-    data = graphene.Field(UserType)
+    data = graphene.List(UserType)
     page = graphene.Field(PaginatedType)

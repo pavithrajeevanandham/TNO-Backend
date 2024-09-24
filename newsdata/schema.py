@@ -4,7 +4,7 @@ from .models import *
 
 
 class Query(graphene.ObjectType):
-    articles = graphene.List(ArticleConnection, article_id=graphene.Int())
+    articles = graphene.Field(ArticleConnection, article_id=graphene.Int())
 
     def resolve_articles(self, info):
         queryset = Article.objects.all()
