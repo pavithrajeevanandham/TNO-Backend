@@ -4,45 +4,45 @@ from .types import *
 from .models import *
 
 
-class CreateArticle(graphene.Mutation):
+class CreateUser(graphene.Mutation):
     class Arguments:
         title = graphene.String(required=True)
         author = graphene.String(required=True)
         published_date = graphene.String(required=True)
 
-    article = graphene.Field(ArticleType)
+    user = graphene.Field(UserType)
 
     def mutate(self, info, title, author, published_date):
-        article = Article(title=title, author=author, published_date=published_date)
-        article.save()
-        return CreateArticle(article=article)
+        user = CustomUser(title=title, author=author, published_date=published_date)
+        user.save()
+        return CreateUser(user=user)
 
 
-class UpdateArticle(graphene.Mutation):
+class UpdateUser(graphene.Mutation):
     class Arguments:
         id = graphene.Int(required=True)
         title = graphene.String()
         author = graphene.String()
         published_date = graphene.String()
 
-    article = graphene.Field(ArticleType)
+    article = graphene.Field(UserType)
 
     def mutate(self, info, id, title=None, author=None, published_date=None):
-        article = Article.objects.get(pk=id)
+        user = CustomUser.objects.get(pk=id)
         if title:
-            article.title = title
+            user.title = title
         if author:
-            article.author = author
+            user.author = author
         if published_date:
-            article.published_date = published_date
-        article.save()
-        return UpdateArticle(article=article)
+            user.published_date = published_date
+        user.save()
+        return UpdateUser(user=user)
 
 
 # Add mutations to the schema
 class Mutation(graphene.ObjectType):
-    create_article = CreateArticle.Field()
-    update_article = UpdateArticle.Field()
+    create_article = CreateUser.Field()
+    update_article = UpdateUser.Field()
 
 
 # schema = graphene.Schema(query=Query, mutation=Mutation)
