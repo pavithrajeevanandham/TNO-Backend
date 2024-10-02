@@ -8,3 +8,12 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+class UserRole(models.Model):
+    role = models.CharField(max_length=15)
+
+
+class UserRoleLink(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    role = models.ForeignKey(UserRole, on_delete=models.CASCADE)

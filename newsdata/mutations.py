@@ -7,9 +7,14 @@ from .models import *
 class CreateArticle(graphene.Mutation):
     class Arguments:
         title = graphene.String(required=True)
-        author = graphene.String(required=True)
+        author = graphene.Int(required=True)
+        summary = graphene.String(required=True)
+        image = graphene.String(required=True)
+        keywords = graphene.String(required=True)
+        status = graphene.Int(required=True)
+        sub_title = graphene.String()
         published_date = graphene.String(required=True)
-
+        
     article = graphene.Field(ArticleType)
 
     def mutate(self, info, title, author, published_date):

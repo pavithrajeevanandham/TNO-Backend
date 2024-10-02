@@ -17,7 +17,7 @@ class Article(models.Model):
     keywords = models.CharField(max_length=100)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     status = models.ForeignKey(ArticleStatus, on_delete=models.PROTECT)
-    published_date = models.DateField(auto_now=True)
+    published_date = models.CharField(max_length=100)
     created_at = models.DateField(auto_now_add=True)
     modified_at = models.DateField(auto_now=True)
 
